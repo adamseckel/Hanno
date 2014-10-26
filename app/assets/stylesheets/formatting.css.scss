@@ -1,0 +1,62 @@
+/*colors*/
+$white: #fff;
+$black: #000000;
+
+.start-something-new {
+	height: 400px;
+}
+
+.projects {
+	height: 200px;
+	margin-top: 30px;
+	padding-left: 30px;	
+	padding-right: 30px;
+	border: 1px solid;
+	border-color: $black;
+}
+.project {
+	padding-top: 30px;
+	border-right: 1px solid;
+	border-color: $black;
+	height: 198px;
+}
+.spacer{
+	height: 30px;
+}
+.stats {
+	padding-top: 25px;
+	padding-left: 30px;
+}
+.footer {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	text-align: center;
+}
+.black-hr {
+	color: $black;
+	background-color: $black;
+	border-color: $black;
+}
+hr {
+	margin-top: 0px;
+
+}
+.footer-icon {
+	position: relative;
+	bottom: 126px;
+}
+.right {
+	text-align: right;
+}
+.left {
+	text-align: left;
+}
+.center {
+	text-align: center;;
+}
+.relative {
+	position: relative;
+}
+.absolute {
+	position: relative;
+}

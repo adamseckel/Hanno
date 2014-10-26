@@ -1,0 +1,90 @@
+.container-fluid.new-nav
+
+  table
+    tr
+      td
+        h1 =@project.title.truncate(25) 
+      td
+        h3 =link_to "Tasks (0/6)", project_path(anchor: "tasks")
+      td
+        h3 =link_to "Discussion (1)", project_path(anchor: "discussion")
+      td.right
+        h3 ="Due:  #{@project.due_date}"
+
+    / .col-md-3
+    /   h1 =@project.title + ":"
+    / .col-md-2
+    /   h3 =link_to "Tasks (0/6)", project_path(anchor: "tasks")
+    / .col-md-2
+    /   h3 =link_to "Discussion (1)", project_path(anchor: "discussion")
+    / .col-md-1
+    / .col-md-4.right
+    /   h3 ="Due:  #{@project.due_date}"
+/ .row
+/   hr.black-hr
+
+.row
+  .image-content
+
+
+.container.project-content
+  .col-md-12.description
+    br
+    p = "Description: #{@project.description}"
+    br
+.row
+  hr
+.container.project-content    
+  .col-md-12
+
+  .row#accordian   
+    .col-md-12.tasks 
+      a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+        .col-md-6.left
+          h3#discussion Discussion (1)
+        .col-md-6.right
+          i class="fa fa-caret-up fa-2x"
+    .col-md-12
+      .container.collapse.in#collapseTwo
+        .row
+          .task.col-md-12
+            br
+            .container.margin-fix
+              p 
+
+             
+          .task.col-md-12
+            h4 Comments
+            .container.margin-fix
+              p Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Nullam quis risus eget urna mollis ornare vel eu leo.
+  br
+  .row#accordian
+    .col-md-12.tasks.flip
+      a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+        .col-md-6.left
+          h3#tasks Tasks (0/6)
+        .col-md-6.right
+          i class="fa fa-caret-up fa-2x"
+    .col-md-12
+      .container.collapse.in#collapseOne
+        .task.col-md-6
+          h4 Task 1
+        .task.col-md-6
+          h4 Task 4
+        .task.col-md-6
+          h4 Task 2
+        .task.col-md-6
+          h4 Task 5
+        .task.col-md-6
+          h4 Task 3
+        .task.col-md-6
+          h4 
+  br
+
+         
+
+
+
+
+
+  

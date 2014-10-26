@@ -1,0 +1,36 @@
+/*colors*/
+$white: #fff;
+$black: #000000;
+
+.start-something-new {
+	padding-top: 80px;
+}
+.start-something-new h1{
+	color: $white;
+	font-size: 100px;
+	text-align: center;
+
+}
+h2 {
+  color: $white;
+  text-align: center;
+
+}
+.project, .project h3{
+	color: $black;
+	font-size: 70px;
+	text-align: center;
+}
+.stats, .stats h4 {
+	font-size: 30px;
+}
+.special-bg, .special-bg h1 {
+  color: $white;
+  font-size: 100px;
+  text-align: center;
+}
+
+.index h1 {
+  color: $black;
+  text-align: center;
+}

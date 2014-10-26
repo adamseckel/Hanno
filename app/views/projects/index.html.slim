@@ -1,0 +1,39 @@
+#myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        h4#myModalLabel.modal-title Lets Start A New Project:
+      .modal-body
+	    	=render "shared/form"
+
+
+
+.row
+  a data-target="#myModal" data-toggle="modal" 
+  	.col-md-12.start-something-new
+        span.float-link-lighten.transition 
+        h1 Start a New Project
+        h2 Get on Course with Hanno
+
+.container-fluid.index
+  h1 Current Projects:
+  - @projects.each do |projects|
+
+    .projects.col-md-12
+      =link_to "", projects, class: "float-link-lighten transition"
+      .project.col-md-6.col-lg-6.col-sm-6.col-xs-6
+        h3 =projects.title
+      .stats.col-md-6.col-lg-6.col-sm-6.col-xs-6
+        h4 =projects.due_date
+        h4 6 Tasks / 3 Complete
+        h4 8 Comments
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*colors*/
+$white: #fff;
+$black: #000000;
+
+.new-nav {
+  padding-top: 0px;
+  height: 55px;
+}
+
+.new-nav {
+  overflow: hidden;
+  h1, h3 {
+    line-height: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: $black;
+  }
+  h3 {
+    margin-top: 10px;
+  }
+  table {
+    width: 100%;
+    vertical-align: middle;
+    height: 100%;
+    td {
+      vertical-align: middle;
+    }
+  }
+}
+.image-content {
+  height: 400px;
+  width: 100%;
+}
+
+.project-content {
+  h3 {
+    margin-top: 12px;
+  }
+}
+.description {
+  p {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    }
+}
+.tasks{
+  border: 1px solid;
+  overflow: hidden;
+  p {
+    text-transform: none;
+  }
+
+}
+.margin-fix {
+  padding-right: 50px;
+}
+
+.tasks {
+  .fa-caret-down, .fa-caret-up{
+    margin-top: 12px;   
+  }
+
+}

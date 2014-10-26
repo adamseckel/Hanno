@@ -1,0 +1,64 @@
+/*colors*/
+$white: #fff;
+$black: #000000;
+
+.float-link-lighten {
+  position:absolute; 
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  background-color: $white;
+  opacity: 0;
+
+  z-index: 1;
+}
+
+
+.float-link-darken {
+	position:absolute; 
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  background-color: #9f9d9f;
+  opacity: 0;
+
+  z-index: 1;
+}
+
+.float-link-lighten:hover {
+  opacity: 0.2;
+}
+.navbar:hover{
+  background: rgba(255,255,255,1);
+}
+
+.float-link-lighten-100:hover {
+  opacity: 1;
+}
+.float-link-darken:hover {
+	opacity: 0.05;
+}
+.white:hover{
+  color: $white;
+  opacity: 0.5;
+}
+.text-hover:hover{
+	opacity: 0.5;
+}
+
+.transition {
+	-webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.bg-transition{
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}

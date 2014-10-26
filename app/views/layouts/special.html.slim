@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title MgmtTool
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    .special-bg
+      .middle 
+        h1 Hanno
+        h2 Project Manager 
+    .bottom
+      h1=link_to "#{icon('angle-down')}".html_safe, root_path(anchor: "about"), class: "white transition"
+
+    =render 'shared/nav'
+
+
+    .container-fluid.index.offset.background
+      = yield
+    =render "shared/footer"

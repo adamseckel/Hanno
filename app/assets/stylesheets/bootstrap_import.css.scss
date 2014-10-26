@@ -1,0 +1,117 @@
+/*colors*/
+$white: #fff;
+$black: #000000;
+
+/*navbar - reset*/
+$navbar-height: 70px;
+$navbar-border-radius: 0px;
+$navbar-default-color: $black;
+$navbar-default-bg: $white;
+$navbar-default-border: none;
+$navbar-default-link-color: $black;
+$navbar-default-link-hover-color: $black;
+$navbar-default-link-hover-bg: $white;
+$brand-primary: $black;
+
+
+/*HR - Color*/
+
+/*$hr-border: $black;*/
+
+/*Fonts*/
+$font-family-sans-serif: 'Pathway Gothic One', sans-serif;
+$font-size-base: 18px;
+
+/*import*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import url(http://fonts.googleapis.com/css?family=Carrois+Gothic|Pathway+Gothic+One);
+
+
+body {
+	padding-top: 70px;
+}
+
+a, li, h1, h2, h3, h4, h5, h6 {
+	text-transform: uppercase;
+}
+
+a:hover{
+  text-decoration: none;
+
+}
+
+
+.navbar {
+  border: 0px solid;
+  background: rgba(255,255,255,0.4);
+ /* background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.73) 47%, rgba(255,255,255,0.2) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(255,255,255,0.73)), color-stop(100%, rgba(255,255,255,0.2)));
+  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.73) 47%, rgba(255,255,255,0.2) 100%);
+  background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.73) 47%, rgba(255,255,255,0.2) 100%);
+  background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.73) 47%, rgba(255,255,255,0.2) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.73) 47%, rgba(255,255,255,0.2) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0.2 );}*/
+}
+.nav li {
+  padding-right: 40px;	
+  padding-left: 30px;
+	font-size: 20px
+}
+.navbar .nav,
+.navbar .nav > li {
+  float:none;
+  display:inline-block;
+  *display:inline; /* ie7 fix */
+
+  vertical-align: top;
+}
+
+.navbar {
+  text-align:center;
+}
+
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > li > a:hover  {
+	color: $black;
+	background: repeating-linear-gradient(
+  to bottom,
+  rgba(255,255,255,0),
+  rgba(255,255,255,0) 50px,
+  $black 3px,
+  $black 53px
+	);
+    transition-property: width;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    transition-delay: 2s;
+}
+
+
+.navbar-default .navbar-nav > .active > a {
+
+	background: repeating-linear-gradient(
+  to bottom,
+  rgba(255,255,255,0),
+  rgba(255,255,255,0) 50px,
+  $black 3px,
+  $black 53px
+	);
+    transition-property: width;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    transition-delay: 2s;
+    
+
+	color: $black;
+}
+
+.index {
+	padding-right: 30px;
+	padding-left: 30px;
+  z-index: 50;
+}

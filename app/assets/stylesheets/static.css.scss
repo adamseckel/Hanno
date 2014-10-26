@@ -1,0 +1,56 @@
+// Place all the styles related to the static controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*colors*/
+$white: #fff;
+$black: #000000;
+.about h1{
+  font-size: 100px;
+  z-index: 999;
+}
+.index-fix p{
+  z-index: 999;
+}
+
+.special-bg {
+  position: fixed;
+  top: 70px;
+  bottom:0px;
+  right: 0px;
+  left: 0px;
+  background-image: image-url("nautical_map.jpg");
+  background-size: 100%;
+  z-index: -10;
+}
+.special-bg h1 h2 {
+
+  color: $white
+}
+.white{
+  color: $white;
+  font-size: 100px;
+}
+
+
+.offset {
+  margin-top: 55%;
+}
+.background{
+  background: white;
+  position: relative;
+  z-index: 999;
+}
+.middle{
+  position: fixed;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+}
+.bottom, .bottom h1 {
+  position: fixed;
+  bottom: 50px;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}
