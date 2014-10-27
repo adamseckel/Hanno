@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
       redirect_to root_path
     end
   end
+  
   def show
     @project = Project.find params[:id]
     @task = Task.new
@@ -23,6 +24,33 @@ class ProjectsController < ApplicationController
     @comment = Comment.new
 
   end
+
+  def edit
+    @project = Project.find params[:id]
+  end
+
+  def update
+    @project = Project.find params[:id]
+    if @project.update project_params
+      redirect_to @project, notice: "Updated successfully!"
+    else
+      flash.now[:alert] = "Please correct errors below!"
+      render :edit
+    end
+  end
+
+  def destroy
+    @project = Project.find params[:id]
+    if @project.destroy
+      redirect_to projects_path
+    else
+      flash.now[:alert] = "Error"
+      redirect_to @project
+    end
+    
+
+  end
+
 
   private
 

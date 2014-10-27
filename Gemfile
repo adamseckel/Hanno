@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # productivity and add-ons
 gem "slim-rails"
+gem 'devise'
 
 gem "faker"
 

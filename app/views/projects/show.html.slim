@@ -1,27 +1,73 @@
-.container-fluid.new-nav
+#myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        h4#myModalLabel.modal-title New Task:
+      .modal-body
+        = form_for [@project, @task] do |f|
+          .form-group
+            = f.label :title
+            = f.text_field :title, class: "form-control"
 
-  table
-    tr
-      td
-        h1 =@project.title.truncate(25) 
-      td
-        h3 =link_to "Tasks (0/6)", project_path(anchor: "tasks")
-      td
-        h3 =link_to "Discussion (1)", project_path(anchor: "discussion")
-      td.right
-        h3 ="Due:  #{@project.due_date}"
+          .form-group
+            = f.label :due_date
+            br
+            = f.datetime_select :due_date, class: "form-control"
 
-    / .col-md-3
-    /   h1 =@project.title + ":"
-    / .col-md-2
-    /   h3 =link_to "Tasks (0/6)", project_path(anchor: "tasks")
-    / .col-md-2
-    /   h3 =link_to "Discussion (1)", project_path(anchor: "discussion")
-    / .col-md-1
-    / .col-md-4.right
-    /   h3 ="Due:  #{@project.due_date}"
-/ .row
-/   hr.black-hr
+          .modal-footer
+            button.btn.btn-default data-dismiss="modal" type="button"  Close
+            = f.submit class: "btn btn-primary"
+
+#discussion-modal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+          span.sr-only Close
+        h4#myModalLabel.modal-title New Task:
+      .modal-body
+        = form_for [@project, @discussion] do |f|
+          .form-group
+            = f.label :title
+            = f.text_field :title, class: "form-control"
+
+          .form-group
+            = f.label :discussion
+            br
+            = f.text_area :description, class: "form-control"
+
+          .modal-footer
+            button.btn.btn-default data-dismiss="modal" type="button"  Close
+            = f.submit class: "btn btn-primary"
+
+.row
+  .container-fluid.new-nav.fadeInDown.animated
+    .container-fluid
+
+
+      table.clearfix
+        tr
+          td
+            h1 =@project.title.truncate(50) 
+          td.left
+            h3 =link_to "Tasks (#{done_tasks(@project)}/#{@project.tasks.count})", project_path(anchor: "tasks")
+          td.left
+            h3 =link_to "Discussions (#{@project.discussions.count})", project_path(anchor: "discussion")
+          td.right
+            h3 ="Due:  #{@project.due_date}"
+          td.right.icon-link
+            a =link_to "", edit_project_path(@project), class: "fa fa-cog transition hover-lighten"
+          td.center.icon-link
+            a = link_to "", project_path(@project), method: :delete, data:{confirm: "Are you sure you want to delete this project?"}, class: "fa fa-times transition hover-lighten"
+        tr
+          td colspan="6"
+            .progress
+              .progress-bar.progress-bar-info.active.progress-bar-striped aria-valuemax="#{@project.tasks.count}" aria-valuemin="0" aria-valuenow="#{done_tasks(@project)}" role="progressbar" style=("width: #{percent_done(@project)}%;") 
+                span.sr-only 0% Complete
 
 .row
   .image-content
@@ -41,44 +87,76 @@
     .col-md-12.tasks 
       a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
         .col-md-6.left
-          h3#discussion Discussion (1)
+          h3#discussion = "Discussions (#{@project.discussions.count})"
         .col-md-6.right
-          i class="fa fa-caret-up fa-2x"
+          a data-target="#discussion-modal" data-toggle="modal" 
+            i.fa.fa-plus.fa-1x.transition
     .col-md-12
       .container.collapse.in#collapseTwo
-        .row
-          .task.col-md-12
-            br
-            .container.margin-fix
-              p 
-
-             
-          .task.col-md-12
-            h4 Comments
-            .container.margin-fix
-              p Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Nullam quis risus eget urna mollis ornare vel eu leo.
+        -@project.discussions.each do |discussion|
+          .col-md-12.discussion
+            .container
+              table.table-full-width
+                tr
+                  td.status-padding
+                    = link_to "", [@project, discussion], :method => :delete, data:{confirm: "Are you sure?"}, class: "fa fa-times transition"
+                  td
+                    h3 =discussion.title
+                tr
+                  td
+                  td
+                    p =discussion.description
+                tr
+                  td
+                  td
+                    h4 Comments
+                -discussion.comments.each do |comment|
+                  tr
+                    td
+                    td
+                      table
+                        tr
+                          td.comment.special-align.icon-hover
+                            / i.fa.fa-comment <===== show if not your comment
+                            = link_to "", [discussion, comment], :method => :delete, data:{confirm: "Are you sure?"}, class: "fa fa-times transition "
+                          td.margin-fix
+                            p =comment.body
+                      hr
+                tr
+                  td
+                  td.comment
+                    = form_for [discussion, @comment] do |f|
+                      table
+                        tr
+                          td.full-width
+                            = f.text_area :body, class: "form-control"
+                          td.right
+                            = f.submit "Post", class: "btn btn-primary"
   br
   .row#accordian
     .col-md-12.tasks.flip
       a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
         .col-md-6.left
-          h3#tasks Tasks (0/6)
+          h3#tasks Tasks (#{done_tasks(@project)}/#{@project.tasks.count})
         .col-md-6.right
-          i class="fa fa-caret-up fa-2x"
+          a data-target="#myModal" data-toggle="modal" 
+            i.fa.fa-plus.fa-1x.transition
     .col-md-12
       .container.collapse.in#collapseOne
-        .task.col-md-6
-          h4 Task 1
-        .task.col-md-6
-          h4 Task 4
-        .task.col-md-6
-          h4 Task 2
-        .task.col-md-6
-          h4 Task 5
-        .task.col-md-6
-          h4 Task 3
-        .task.col-md-6
-          h4 
+        -@project.tasks.each do |task|
+          .task.col-md-6
+            .col-md-1.status            
+              -if !task.done 
+                = link_to "", [@project, task], :method => :patch, class: "fa fa-square-o transition"
+              - else
+                = link_to "", [@project, task], :method => :patch, class: "fa fa-check-square-o transition"
+              br
+              = link_to "", [@project, task], :method => :delete, data:{confirm: "Are you sure?"}, class: "fa fa-times transition"
+            .col-md-11
+              h4 = task.title
+              p = "Due: #{task.due_date}"
+
+
   br
 
          

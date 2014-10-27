@@ -48,6 +48,10 @@ $black: #000000;
 	opacity: 0.5;
 }
 
+.hover-lighten:hover{
+  opacity: 0.5;
+}
+
 .transition {
 	-webkit-transition: opacity 0.2s ease-in-out;
   -moz-transition: opacity 0.2s ease-in-out;

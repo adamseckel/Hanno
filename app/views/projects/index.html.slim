@@ -19,7 +19,7 @@
         h2 Get on Course with Hanno
 
 .container-fluid.index
-  h1 Current Projects:
+  h1 ="#{@projects.count} Current Projects:"
   - @projects.each do |projects|
 
     .projects.col-md-12
@@ -28,8 +28,8 @@
         h3 =projects.title
       .stats.col-md-6.col-lg-6.col-sm-6.col-xs-6
         h4 =projects.due_date
-        h4 6 Tasks / 3 Complete
-        h4 8 Comments
+        h4 #{projects.tasks.count} Tasks / #{done_tasks(projects)} Complete
+        h4 #{projects.comments.count} Comments
 
 
 
