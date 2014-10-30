@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
 
   def index
     @project = Project.new 
@@ -7,6 +8,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new project_params
+    @project.user = current_user
     if @project.save
       # flash[:notice] = "project saved successfully!"
       # # redirect_to question_path(@project)

@@ -6,11 +6,22 @@
       /! Collect the nav links, forms, and other content for toggling
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         ul.nav.navbar-nav
+          li.nav-left
           li.special-align class=("#{'active' if request.path == '/projects'}") 
                 = link_to "#{icon('th-list')} <span class='separator'> |</span> Projects".html_safe, projects_path
           li class=("#{'active' if request.path == '/'}") 
                 = link_to "#{icon('compass')} <span class='separator'> |</span> Hanno".html_safe, root_path
-          li class=("#{'active' if request.path == '/contact'}") 
-                = link_to "#{icon('phone')} <span class='separator'> |</span> Login".html_safe, contact_index_path
+          
+          - if user_signed_in?
+            li class=("#{'active' if request.path == new_user_session_path || request.path == user_session_path || request.path == edit_user_registration_path}") 
+              = link_to "#{icon('user')} <span class='separator'> |</span> You".html_safe, edit_user_registration_path 
+            li.nav-right
+              = link_to "Logout", destroy_user_session_path, method: :delete
+          
+              
+          - else
+            li
+              = link_to "#{icon('user')} <span class='separator'> |</span> Login".html_safe, new_user_session_path
+            li.nav-right-extra
 
       

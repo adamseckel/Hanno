@@ -4,6 +4,7 @@ class TasksController < ApplicationController
     @project          =   Project.find params[:project_id]
     @task             =   Task.new task_params
     @task.project     =   @project
+    @task.user     =   current_user
   
     if @task.save
       redirect_to @project, notice: "Task created!"

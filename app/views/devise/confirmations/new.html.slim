@@ -1,0 +1,19 @@
+.container.flex-grow
+  .col-md-3
+  .col-md-6.center.log-in
+
+
+    h2 Resend confirmation instructions
+    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+      = devise_error_messages!
+      .form-group
+        p= f.label :email
+        p= f.email_field :email, autofocus: true, class: "form-control"
+      div= f.submit "Resend confirmation instructions"
+    = render "devise/shared/links"
+
+
+    h2 Resend confirmation instructions
+    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+
+  .col-md-3

@@ -4,5 +4,7 @@ class Discussion < ActiveRecord::Base
 
   validates :description, presence: true
 
+  belongs_to :user
+
   scope :recent, -> { order("updated_at DESC") }
 end

@@ -4,6 +4,7 @@ class DiscussionsController < ApplicationController
     @project                =   Project.find params[:project_id]
     @discussion             =   Discussion.new discussion_params
     @discussion.project     =   @project
+    @discussion.user = current_user
   
     if @discussion.save
       redirect_to @project, notice: "Discussion created!"

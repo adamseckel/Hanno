@@ -148,13 +148,16 @@ $black: #000000;
 .table-full-width{
   width: 990px;
 }
+.user {
+  color: #bbbbbb;
+}
 .discussion {
 
   p {
     margin: 0;
     margin-left: 10px;
   }
-  i {
+  i, a {
     margin-left: 10px;
     color: #dddddd;
   }
@@ -164,6 +167,12 @@ $black: #000000;
   }
   td .special-align {
     vertical-align: top;
+  }
+  .special-align {
+    .fa-times{
+      padding-left: 2px;
+      padding-right: 1px;
+    }
   }
 
 

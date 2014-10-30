@@ -3,10 +3,11 @@ class CommentsController < ApplicationController
   def create
     # @project                =   Project.find params[:project_id]
     @discussion             =   Discussion.find params[:discussion_id]
-    @project = @discussion.project
+    @project              = @discussion.project
   
     @comment             =   Comment.new comment_params
     @comment.discussion  =   @discussion
+    @comment.user        =   current_user
 
   
     if @comment.save
@@ -21,7 +22,7 @@ class CommentsController < ApplicationController
   def destroy
 
     @discussion           =   Discussion.find params[:discussion_id]
-    @project              = @discussion.project
+    @project              =   @discussion.project
   
     @comment              =   Comment.find params[:id]
     @comment.discussion   =   @discussion
