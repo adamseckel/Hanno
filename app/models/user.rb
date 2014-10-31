@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
   has_many :tasks
   has_many :discussions
   has_many :comments
+  has_one :favourite
+  has_one :favourited_project, through: :favourites, source: :project
+
+  has_many :likes, dependent: :destroy
+  has_many :liked_comments, through: :likes, source: :comment
 
   def email_required?
     provider.nil?

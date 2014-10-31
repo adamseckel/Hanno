@@ -9,11 +9,15 @@ Rails.application.routes.draw do
   resources :projects do
     resources :tasks, only: [:create, :update, :destroy]
     resources :discussions, only: [:create, :update, :destroy]
+    resources :favourites, only: [:create, :destroy]
   end
 
   resources :discussions, only: [] do
     resources :comments, only: [:create, :update, :destroy]
   end
 
+  resources :comments, only: [] do
+    resources :likes, only: [:create, :destroy]
+  end
   
 end

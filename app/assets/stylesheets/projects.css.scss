@@ -14,6 +14,11 @@ $black: #000000;
   width: 100%;
 }
 
+body {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 .new-nav {
   h1, h3, i{
 
@@ -86,8 +91,8 @@ $black: #000000;
 
 }
 .status{
-  a:hover{
-    opacity: 0.5;
+  .mark-task:hover{
+    color: #6acddc;
   }
 }
 
@@ -100,9 +105,6 @@ $black: #000000;
   padding-right: 15px;
 }
 
-.discussion {
-
-}
 
 .progress {
   margin-top: 3px;
@@ -113,9 +115,6 @@ $black: #000000;
 .status-padding{
   margin-top: 12.5px;
   padding-right: 30px;
-    a:hover{
-    opacity: 0.5;
-  }
 }
 .icon-link, .new-nav{
   .btn {
@@ -174,6 +173,37 @@ $black: #000000;
       padding-right: 1px;
     }
   }
+}
+.comment {
+  blockquote {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    font-size: 18px;
+  }
+}
+a.like {
+  
+}
+a.like:hover{
+  color: #6acddc;
+}
 
+a.delete {
 
+}
+
+p.likes-count {
+  color: #dddddd; 
+}
+
+a.delete:hover{
+  color: #CC1616;
+}
+
+a.bookmark:hover{
+  color: #25C450;
 }

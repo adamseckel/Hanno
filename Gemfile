@@ -46,6 +46,7 @@ group :development do
 	gem "binding_of_caller"
 	gem "quiet_assets"
 	gem 'pry-rails'
+  gem "rails-erd"
 end
 
 gem "rails_12factor", group: :production

@@ -94,10 +94,7 @@ a:hover{
   $black 3px,
   $black 53px
 	);
-    transition-property: width;
-    transition-duration: 1s;
-    transition-timing-function: linear;
-    transition-delay: 2s;
+  transition: all 2s linear;
 }
 
 
@@ -110,10 +107,7 @@ a:hover{
   $black 3px,
   $black 53px
 	);
-    transition-property: width;
-    transition-duration: 1s;
-    transition-timing-function: linear;
-    transition-delay: 2s;
+
     
 
 	color: $black;

@@ -18,6 +18,20 @@
         h1 Start a New Project
         h2 Get on Course with Hanno
 
+- if user_signed_in?
+  - if current_user.favourite
+    .container-fluid.index
+      h1 Favourited Project
+      .projects.col-md-12
+
+        =link_to "", current_user.favourite.project, class: "float-link-lighten transition"
+        .project.col-md-6.col-lg-6.col-sm-6.col-xs-6
+          h3 =current_user.favourite.project.title
+        .stats.col-md-6.col-lg-6.col-sm-6.col-xs-6
+          h4 =current_user.favourite.project.due_date
+          h4 #{current_user.favourite.project.tasks.count} Tasks / #{done_tasks(current_user.favourite.project)} Complete
+          h4 #{current_user.favourite.project.comments.count} Comments
+
 .container-fluid.index
   h1 ="#{@projects.count} Current Projects:"
   - @projects.each do |projects|
@@ -31,6 +45,7 @@
         h4 #{projects.tasks.count} Tasks / #{done_tasks(projects)} Complete
         h4 #{projects.comments.count} Comments
 
+/ section for completed projects
 
 
 

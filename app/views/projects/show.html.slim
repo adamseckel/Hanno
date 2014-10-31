@@ -28,7 +28,7 @@
         button.close data-dismiss="modal" type="button" 
           span aria-hidden="true"  &times;
           span.sr-only Close
-        h4#myModalLabel.modal-title New Task:
+        h4#myModalLabel.modal-title New Discussion Topic:
       .modal-body
         = form_for [@project, @discussion] do |f|
           .form-group
@@ -58,12 +58,18 @@
           td.right
             h3 ="Due:  #{@project.due_date}"
           td.right.icon-link
-            a =link_to "", edit_project_path(@project), class: "fa fa-cog transition hover-lighten"
+            a =link_to "", edit_project_path(@project), class: "fa fa-cog like"
           - if user_signed_in? && current_user == @project.user
-            td.center.icon-link
-              a = link_to "", project_path(@project), method: :delete, data:{confirm: "Are you sure you want to delete this project?"}, class: "fa fa-times transition hover-lighten"
+            td.right.icon-link
+              a = link_to "", project_path(@project), method: :delete, data:{confirm: "Are you sure you want to delete this project?"}, class: "fa fa-times delete"
+          td.right.icon-link
+            - if user_signed_in?
+              - if @project.favourite_for(current_user).nil?
+                = link_to "", project_favourites_path(@project), method: :post, class: "fa fa-bookmark-o bookmark"
+              -else 
+                = link_to "", project_favourite_path(@project, @project.favourite_for(current_user)), method: :delete, class: "fa fa-bookmark delete"
         tr
-          td colspan="6"
+          td colspan="7"
             .progress
               .progress-bar.progress-bar-info.active.progress-bar-striped aria-valuemax="#{@project.tasks.count}" aria-valuemin="0" aria-valuenow="#{done_tasks(@project)}" role="progressbar" style=("width: #{percent_done(@project)}%;") 
                 span.sr-only 0% Complete
@@ -99,7 +105,7 @@
                 tr
                   td.status-padding
                     - if user_signed_in? && current_user == discussion.user
-                      = link_to "", [@project, discussion], :method => :delete, data:{confirm: "Are you sure?"}, class: "fa fa-times transition"
+                      = link_to "", [@project, discussion], :method => :delete, data:{confirm: "Are you sure?"}, class: "fa fa-times delete"
                   td
                     h3 =discussion.title
                 tr
@@ -111,21 +117,33 @@
                   td
                     h4 Comments
                 -discussion.comments.each do |comment|
-
                   tr
                     td
                     td
                       table
                         tr
-                          td.comment.special-align.icon-hover
+                          td.comment.special-align.center
                             - if user_signed_in? && current_user == comment.user
-                              = link_to "", [discussion, comment], :method => :delete, data:{confirm: "Are you sure?"}, class: "fa fa-times transition"
+                              = link_to "", [discussion, comment], :method => :delete, data:{confirm: "Are you sure?"}, class: "fa fa-times delete"
                             - else 
                               i.fa.fa-comment
-                          td.margin-fix
+                            br
+                            - if user_signed_in?
+                              - if comment.like_for(current_user).nil?
+                                = link_to "", comment_likes_path(comment), method: :post, class: "fa fa-thumbs-o-up  like"
+                                br
+                              - else
+                                = link_to "", comment_like_path(comment, comment.like_for(current_user)), method: :delete, class: "fa fa-thumbs-up delete"
+                                br
+                            - else 
+                              i.fa.fa-thumbs-o-up
+                            p.likes-count = "#{comment.likes.count}"
+
+                            
+                          td.margin-fix.comment
                      
 
-                            p ="#{comment.body} <span class='user'> - #{comment_user_display(comment)} </span>".html_safe 
+                            blockquote ="#{comment.body} <span class='user'> - #{comment_user_display(comment)} </span>".html_safe 
 
                       hr
                 tr
@@ -153,12 +171,12 @@
           .task.col-md-6
             .col-md-1.status            
               -if !task.done 
-                = link_to "", [@project, task], :method => :patch, class: "fa fa-square-o transition"
+                = link_to "", [@project, task], :method => :patch, class: "fa fa-square-o transition mark-task"
               - else
-                = link_to "", [@project, task], :method => :patch, class: "fa fa-check-square-o transition"
+                = link_to "", [@project, task], :method => :patch, class: "fa fa-check-square-o transition delete"
               br
               - if user_signed_in? && current_user == task.user
-                = link_to "", [@project, task], :method => :delete, data:{confirm: "Are you sure?"}, class: "fa fa-times transition"
+                = link_to "", [@project, task], :method => :delete, data:{confirm: "Are you sure?"}, class: "fa fa-times delete"
             .col-md-11
               h4 = task.title
               p = "Due: #{task.due_date}"
@@ -166,15 +184,15 @@
 
   br
 
-javascript:
-  $(document).ready(function(){
-    $(".well").on("click", ".btn", function(){
-      $(this).parents(".well").fadeOut(function(){
-        $(this).parents(".box").slideUp();
-      });
-      return false 
-    });
-  });
+/ javascript:
+/   $(document).ready(function(){
+/     $(".well").on("click", ".btn", function(){
+/       $(this).parents(".well").fadeOut(function(){
+/         $(this).parents(".box").slideUp();
+/       });
+/       return false 
+/     });
+/   });
 
          
 / javascript:
