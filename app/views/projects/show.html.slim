@@ -56,7 +56,7 @@
           td.left
             h3 =link_to "Discussions (#{@project.discussions.count})", project_path(anchor: "discussion")
           td.right
-            h3 ="Due:  #{@project.due_date}"
+            h3 ="#{@project.due_date.strftime("Due on %m/%d/%Y at %I:%M%p")}"
           td.right.icon-link
             a =link_to "", edit_project_path(@project), class: "fa fa-cog like"
           - if user_signed_in? && current_user == @project.user
@@ -116,46 +116,14 @@
                   td
                   td
                     h4 Comments
-                -discussion.comments.each do |comment|
-                  tr
-                    td
-                    td
-                      table
-                        tr
-                          td.comment.special-align.center
-                            - if user_signed_in? && current_user == comment.user
-                              = link_to "", [discussion, comment], :method => :delete, data:{confirm: "Are you sure?"}, class: "fa fa-times delete"
-                            - else 
-                              i.fa.fa-comment
-                            br
-                            - if user_signed_in?
-                              - if comment.like_for(current_user).nil?
-                                = link_to "", comment_likes_path(comment), method: :post, class: "fa fa-thumbs-o-up  like"
-                                br
-                              - else
-                                = link_to "", comment_like_path(comment, comment.like_for(current_user)), method: :delete, class: "fa fa-thumbs-up delete"
-                                br
-                            - else 
-                              i.fa.fa-thumbs-o-up
-                            p.likes-count = "#{comment.likes.count}"
-
-                            
-                          td.margin-fix.comment
-                     
-
-                            blockquote ="#{comment.body} <span class='user'> - #{comment_user_display(comment)} </span>".html_safe 
-
-                      hr
+                    table.comments.table-full-width-2 id=dom_id(discussion)
+                      -discussion.comments.each do |comment|
+                        = render(partial: "/comments/comment", locals: {comment: comment, discussion: discussion})
                 tr
                   td
                   td.comment
-                    = form_for [discussion, @comment] do |f|
-                      table
-                        tr
-                          td.full-width
-                            = f.text_area :body, class: "form-control"
-                          td.right
-                            = f.submit "Post", class: "btn btn-primary"
+                    .new-comment= render(partial: "/comments/form", locals: {discussion: discussion, comment: @comment})
+
   br
   .row#accordian
     .col-md-12.tasks.flip
@@ -180,29 +148,6 @@
             .col-md-11
               h4 = task.title
               p = "Due: #{task.due_date}"
-
-
   br
-
-/ javascript:
-/   $(document).ready(function(){
-/     $(".well").on("click", ".btn", function(){
-/       $(this).parents(".well").fadeOut(function(){
-/         $(this).parents(".box").slideUp();
-/       });
-/       return false 
-/     });
-/   });
-
-         
-/ javascript:
-/   $("h1").each(function(){
-/     var fontSize = parseFloat($(this).css('font-size'));
-/     var fontSize = fontSize + 10 + "px";
-/     $(this).css('font-size',fontSize);
-/   });
-
-
-
 
   

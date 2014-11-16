@@ -1,0 +1,7 @@
+-if @comment.errors.any?
+  | $(".new-comment").html("#{ j render partial: 'form', locals: {comment: @comment, discussion: @discussion} }")
+-else
+  | $(".comments##{dom_id(@discussion)}").append("#{ j render partial: 'comment', locals: {comment: @comment, discussion: @discussion } }");
+  | $(".comment_body").val("");
+  - @comment = Comment.new
+  | $(".new-comment").html("#{j render partial: 'form', locals: {comment: @comment, discussion: @discussion}}")

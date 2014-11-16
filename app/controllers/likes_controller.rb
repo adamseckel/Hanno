@@ -5,21 +5,28 @@ class LikesController < ApplicationController
   def create
     @like = @comment.likes.new
     @like.user = current_user
-
-    if @like.save
-      redirect_to @project, notice: "Liked"
-    else
-      redirect_to @project, alert: "Unable to like this comment."
+    respond_to do |format|    
+      if @like.save
+        format.html{redirect_to @project, notice: "Liked"}
+        format.js {render}
+      else
+        format.html{redirect_to @project, alert: "Unable to like this comment."}
+        format.js {render}
+      end
     end
 
   end
 
   def destroy
     @like = current_user.likes.find params[:id]
-    if @like.destroy
-      redirect_to @project, notice: "Un-liked"
-    else
-      redirect_to @project, alert: "Unable to un-like this comment."
+    respond_to do |format|
+      if @like.destroy
+        format.html{redirect_to @project, notice: "Un-liked"}
+        format.js {render}
+      else
+        format.html{redirect_to @project, alert: "Unable to un-like this comment."}
+        format.js {render}
+      end
     end
     
   end

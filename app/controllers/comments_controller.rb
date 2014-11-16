@@ -9,12 +9,14 @@ class CommentsController < ApplicationController
     @comment.discussion  =   @discussion
     @comment.user        =   current_user
 
-  
-    if @comment.save
-      redirect_to @project, notice: "Discussion created!"
-    else
-      flash.now[:alert] = "Please correct errors below"
-      redirect_to @project
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @project, notice: "Discussion created!" }
+        format.js { render }
+      else
+        format.html{ redirect_to @project, alert: "Please correct errors below" }
+        format.js { render }
+      end
     end
 
   end
@@ -26,12 +28,15 @@ class CommentsController < ApplicationController
   
     @comment              =   Comment.find params[:id]
     @comment.discussion   =   @discussion
+    respond_to do |format|
 
-
-    if @comment.destroy
-      redirect_to @project, notice: "Task deleted!"
-    else
-      redirect_to @project, alert: "Error"
+      if @comment.destroy
+        format.html{redirect_to @project, notice: "Task deleted!"}
+        format.js { render }
+      else
+        format.html{redirect_to @project, alert: "Error"}
+        format.js { render }
+      end
     end
   end
 

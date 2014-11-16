@@ -16,5 +16,8 @@ module ProjectsHelper
     return @percent
   end
 
+  def date_time(date)
+  end
+
 
 end

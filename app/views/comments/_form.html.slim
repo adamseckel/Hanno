@@ -1,0 +1,7 @@
+= form_for [discussion, comment], remote: true do |f|
+  table
+    tr
+      td.full-width
+        = f.text_area :body, class: "form-control"
+      td.right
+        = f.submit "Post", class: "btn btn-primary", data: {disable_with: "submitting..." }

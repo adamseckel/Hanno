@@ -1,0 +1,4 @@
+- if @comment.errors.any?
+  | alert("Can't delete!")
+- else
+  | $("##{dom_id @comment}").fadeOut()

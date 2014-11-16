@@ -11,7 +11,8 @@
             td.left
               h3 =link_to "Discussion (1)", project_path(anchor: "discussion")
             td.right.move-date 
-               = f.datetime_select :due_date, class: "form-control"
+              | Due:
+              = f.datetime_select :due_date, class: "form-control"
             td.right.icon-link
               button.fa.fa-check.btn-default.btn type="submit"
         

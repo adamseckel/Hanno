@@ -1,0 +1,10 @@
+- if user_signed_in?
+  - if comment.like_for(current_user).nil?
+    = link_to "", comment_likes_path(comment), method: :post, class: "fa fa-thumbs-o-up like", remote: true
+    br
+  - else
+    = link_to "", comment_like_path(comment, comment.like_for(current_user)), method: :delete, class: "fa fa-thumbs-up delete", remote: true
+    br
+- else 
+  i.fa.fa-thumbs-o-up
+p.likes-count = "#{comment.likes.count}"

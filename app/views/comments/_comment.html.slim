@@ -1,0 +1,20 @@
+tr id=dom_id(comment)
+  td
+  td
+    table
+      tr
+        td.comment.special-align.center
+          - if user_signed_in? && current_user == comment.user
+            = link_to "", [discussion, comment], :method => :delete, class: "fa fa-times delete", remote: true
+          - else 
+            i.fa.fa-comment
+          br
+          span.like= render(:partial => "/likes/likes", :locals => {:comment => comment})
+          
+
+          
+        td.margin-fix.comment
+   
+
+          blockquote ="#{comment.body} <span class='user'> - #{comment_user_display(comment)} </span>".html_safe 
+    hr
